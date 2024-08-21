@@ -4,7 +4,12 @@
     {
         private static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            var downloadOptions = ArgumentParser.ParseArguments(args);
+            if (downloadOptions == null)
+            {
+                Console.WriteLine("Invalid arguments provided.");
+                Environment.Exit(1);
+            }
         }
     }
 }
