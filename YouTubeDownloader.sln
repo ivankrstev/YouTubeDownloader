@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35208.52
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouTubeDownloader.Core", "YouTubeDownloader.Core\YouTubeDownloader.Core.csproj", "{A1559780-BA16-49A0-BD40-28BBA0CA76AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YouTubeDownloader.Core", "YouTubeDownloader.Core\YouTubeDownloader.Core.csproj", "{A1559780-BA16-49A0-BD40-28BBA0CA76AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouTubeDownloader.CLI", "YouTubeDownloader.CLI\YouTubeDownloader.CLI.csproj", "{7D6BCC8F-66E5-4445-B6FB-6F5607FB0BC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YouTubeDownloader.CLI", "YouTubeDownloader.CLI\YouTubeDownloader.CLI.csproj", "{7D6BCC8F-66E5-4445-B6FB-6F5607FB0BC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouTubeDownloader.GUI", "YouTubeDownloader.GUI\YouTubeDownloader.GUI.csproj", "{485DE044-9B56-48B4-9398-19B81ABA5B42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{7D6BCC8F-66E5-4445-B6FB-6F5607FB0BC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D6BCC8F-66E5-4445-B6FB-6F5607FB0BC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D6BCC8F-66E5-4445-B6FB-6F5607FB0BC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{485DE044-9B56-48B4-9398-19B81ABA5B42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{485DE044-9B56-48B4-9398-19B81ABA5B42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{485DE044-9B56-48B4-9398-19B81ABA5B42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{485DE044-9B56-48B4-9398-19B81ABA5B42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
