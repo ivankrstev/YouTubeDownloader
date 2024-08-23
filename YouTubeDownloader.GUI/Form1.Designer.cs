@@ -33,11 +33,16 @@
             panel1 = new Panel();
             textBox1 = new TextBox();
             label1 = new Label();
+            panel2 = new Panel();
+            selectFolderButton = new Button();
+            selectedFolderTextBox = new TextBox();
+            folderBrowserDialog1 = new FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)MainSplitContainer).BeginInit();
             MainSplitContainer.Panel1.SuspendLayout();
             MainSplitContainer.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // MainSplitContainer
@@ -62,6 +67,7 @@
             tableLayoutPanel1.ColumnCount = 1;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.Controls.Add(panel1, 0, 0);
+            tableLayoutPanel1.Controls.Add(panel2, 0, 1);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -100,6 +106,34 @@
             label1.TabIndex = 0;
             label1.Text = "Enter the YouTube video or playlist URL or ID:";
             // 
+            // panel2
+            // 
+            panel2.Controls.Add(selectFolderButton);
+            panel2.Controls.Add(selectedFolderTextBox);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(3, 110);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(384, 101);
+            panel2.TabIndex = 1;
+            // 
+            // selectFolderButton
+            // 
+            selectFolderButton.Location = new Point(108, 32);
+            selectFolderButton.Name = "selectFolderButton";
+            selectFolderButton.Size = new Size(157, 23);
+            selectFolderButton.TabIndex = 3;
+            selectFolderButton.Text = "Select Download Folder";
+            selectFolderButton.UseVisualStyleBackColor = true;
+            selectFolderButton.Click += selectFolderButton_Click;
+            // 
+            // selectedFolderTextBox
+            // 
+            selectedFolderTextBox.Location = new Point(30, 3);
+            selectedFolderTextBox.Name = "selectedFolderTextBox";
+            selectedFolderTextBox.PlaceholderText = "No folder selected";
+            selectedFolderTextBox.Size = new Size(321, 23);
+            selectedFolderTextBox.TabIndex = 2;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -116,6 +150,8 @@
             tableLayoutPanel1.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -126,5 +162,9 @@
         private Panel panel1;
         private TextBox textBox1;
         private Label label1;
+        private Panel panel2;
+        private TextBox selectedFolderTextBox;
+        private FolderBrowserDialog folderBrowserDialog1;
+        private Button selectFolderButton;
     }
 }
