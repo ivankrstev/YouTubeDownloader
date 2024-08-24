@@ -30,6 +30,10 @@
         {
             MainSplitContainer = new SplitContainer();
             tableLayoutPanel1 = new TableLayoutPanel();
+            panel5 = new Panel();
+            radioButton12 = new RadioButton();
+            radioButton13 = new RadioButton();
+            label4 = new Label();
             panel1 = new Panel();
             textBox1 = new TextBox();
             label1 = new Label();
@@ -57,6 +61,7 @@
             MainSplitContainer.Panel1.SuspendLayout();
             MainSplitContainer.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
+            panel5.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -84,6 +89,7 @@
             // 
             tableLayoutPanel1.ColumnCount = 1;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Controls.Add(panel5, 0, 4);
             tableLayoutPanel1.Controls.Add(panel1, 0, 0);
             tableLayoutPanel1.Controls.Add(panel2, 0, 1);
             tableLayoutPanel1.Controls.Add(panel3, 0, 2);
@@ -101,6 +107,48 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 18.6088F));
             tableLayoutPanel1.Size = new Size(390, 430);
             tableLayoutPanel1.TabIndex = 0;
+            // 
+            // panel5
+            // 
+            panel5.Controls.Add(radioButton12);
+            panel5.Controls.Add(radioButton13);
+            panel5.Controls.Add(label4);
+            panel5.Dock = DockStyle.Fill;
+            panel5.Location = new Point(3, 306);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(384, 36);
+            panel5.TabIndex = 5;
+            // 
+            // radioButton12
+            // 
+            radioButton12.AutoSize = true;
+            radioButton12.Location = new Point(214, 8);
+            radioButton12.Name = "radioButton12";
+            radioButton12.Size = new Size(49, 19);
+            radioButton12.TabIndex = 11;
+            radioButton12.Text = "mp3";
+            radioButton12.UseVisualStyleBackColor = true;
+            // 
+            // radioButton13
+            // 
+            radioButton13.AutoSize = true;
+            radioButton13.Checked = true;
+            radioButton13.Location = new Point(159, 8);
+            radioButton13.Name = "radioButton13";
+            radioButton13.Size = new Size(49, 19);
+            radioButton13.TabIndex = 10;
+            radioButton13.TabStop = true;
+            radioButton13.Text = "mp4";
+            radioButton13.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(30, 10);
+            label4.Name = "label4";
+            label4.Size = new Size(123, 15);
+            label4.TabIndex = 10;
+            label4.Text = "Select Output Format:";
             // 
             // panel1
             // 
@@ -342,6 +390,8 @@
             ((System.ComponentModel.ISupportInitialize)MainSplitContainer).EndInit();
             MainSplitContainer.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
@@ -380,5 +430,9 @@
         private RadioButton radioButton11;
         private RadioButton radioButton10;
         private Label label3;
+        private Panel panel5;
+        private RadioButton radioButton12;
+        private RadioButton radioButton13;
+        private Label label4;
     }
 }
