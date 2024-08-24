@@ -48,6 +48,10 @@
             radioButton2 = new RadioButton();
             radioButton1 = new RadioButton();
             button1 = new Button();
+            panel4 = new Panel();
+            radioButton11 = new RadioButton();
+            radioButton10 = new RadioButton();
+            label3 = new Label();
             folderBrowserDialog1 = new FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)MainSplitContainer).BeginInit();
             MainSplitContainer.Panel1.SuspendLayout();
@@ -56,6 +60,7 @@
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
+            panel4.SuspendLayout();
             SuspendLayout();
             // 
             // MainSplitContainer
@@ -82,16 +87,18 @@
             tableLayoutPanel1.Controls.Add(panel1, 0, 0);
             tableLayoutPanel1.Controls.Add(panel2, 0, 1);
             tableLayoutPanel1.Controls.Add(panel3, 0, 2);
-            tableLayoutPanel1.Controls.Add(button1, 0, 4);
+            tableLayoutPanel1.Controls.Add(button1, 0, 5);
+            tableLayoutPanel1.Controls.Add(panel4, 0, 3);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 5;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 23.7196617F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.7432919F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20.92911F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 19.99893F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 18.609005F));
+            tableLayoutPanel1.RowCount = 6;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 23.71941F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.7431145F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20.9288864F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 9.999894F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 9.999894F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 18.6088F));
             tableLayoutPanel1.Size = new Size(390, 430);
             tableLayoutPanel1.TabIndex = 0;
             // 
@@ -272,12 +279,54 @@
             // button1
             // 
             button1.Anchor = AnchorStyles.None;
-            button1.Location = new Point(132, 371);
+            button1.Location = new Point(132, 370);
             button1.Name = "button1";
             button1.Size = new Size(126, 34);
             button1.TabIndex = 3;
             button1.Text = "Begin Download";
             button1.UseVisualStyleBackColor = true;
+            // 
+            // panel4
+            // 
+            panel4.Controls.Add(radioButton11);
+            panel4.Controls.Add(radioButton10);
+            panel4.Controls.Add(label3);
+            panel4.Dock = DockStyle.Fill;
+            panel4.Location = new Point(3, 264);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(384, 36);
+            panel4.TabIndex = 4;
+            // 
+            // radioButton11
+            // 
+            radioButton11.AutoSize = true;
+            radioButton11.Checked = true;
+            radioButton11.Location = new Point(215, 8);
+            radioButton11.Name = "radioButton11";
+            radioButton11.Size = new Size(64, 19);
+            radioButton11.TabIndex = 11;
+            radioButton11.TabStop = true;
+            radioButton11.Text = "highest";
+            radioButton11.UseVisualStyleBackColor = true;
+            // 
+            // radioButton10
+            // 
+            radioButton10.AutoSize = true;
+            radioButton10.Location = new Point(148, 8);
+            radioButton10.Name = "radioButton10";
+            radioButton10.Size = new Size(59, 19);
+            radioButton10.TabIndex = 10;
+            radioButton10.Text = "lowest";
+            radioButton10.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(30, 10);
+            label3.Name = "label3";
+            label3.Size = new Size(117, 15);
+            label3.TabIndex = 10;
+            label3.Text = "Select Audio Quality:";
             // 
             // Form1
             // 
@@ -299,6 +348,8 @@
             panel2.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -325,5 +376,9 @@
         private Label label2;
         private RadioButton radioButton9;
         private Button button1;
+        private Panel panel4;
+        private RadioButton radioButton11;
+        private RadioButton radioButton10;
+        private Label label3;
     }
 }
