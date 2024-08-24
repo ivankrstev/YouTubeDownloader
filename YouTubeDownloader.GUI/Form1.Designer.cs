@@ -37,6 +37,7 @@
             selectFolderButton = new Button();
             selectedFolderTextBox = new TextBox();
             panel3 = new Panel();
+            radioButton9 = new RadioButton();
             label2 = new Label();
             radioButton8 = new RadioButton();
             radioButton7 = new RadioButton();
@@ -46,8 +47,8 @@
             radioButton3 = new RadioButton();
             radioButton2 = new RadioButton();
             radioButton1 = new RadioButton();
+            button1 = new Button();
             folderBrowserDialog1 = new FolderBrowserDialog();
-            radioButton9 = new RadioButton();
             ((System.ComponentModel.ISupportInitialize)MainSplitContainer).BeginInit();
             MainSplitContainer.Panel1.SuspendLayout();
             MainSplitContainer.SuspendLayout();
@@ -81,14 +82,16 @@
             tableLayoutPanel1.Controls.Add(panel1, 0, 0);
             tableLayoutPanel1.Controls.Add(panel2, 0, 1);
             tableLayoutPanel1.Controls.Add(panel3, 0, 2);
+            tableLayoutPanel1.Controls.Add(button1, 0, 4);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 4;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 23.72093F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.7441864F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20.930233F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 38.3720932F));
+            tableLayoutPanel1.RowCount = 5;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 23.7196617F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.7432919F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20.92911F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 19.99893F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 18.609005F));
             tableLayoutPanel1.Size = new Size(390, 430);
             tableLayoutPanel1.TabIndex = 0;
             // 
@@ -99,7 +102,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(3, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(384, 96);
+            panel1.Size = new Size(384, 95);
             panel1.TabIndex = 0;
             // 
             // textBox1
@@ -124,9 +127,9 @@
             panel2.Controls.Add(selectFolderButton);
             panel2.Controls.Add(selectedFolderTextBox);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(3, 105);
+            panel2.Location = new Point(3, 104);
             panel2.Name = "panel2";
-            panel2.Size = new Size(384, 66);
+            panel2.Size = new Size(384, 65);
             panel2.TabIndex = 1;
             // 
             // selectFolderButton
@@ -160,10 +163,22 @@
             panel3.Controls.Add(radioButton2);
             panel3.Controls.Add(radioButton1);
             panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(3, 177);
+            panel3.Location = new Point(3, 175);
             panel3.Name = "panel3";
-            panel3.Size = new Size(384, 84);
+            panel3.Size = new Size(384, 83);
             panel3.TabIndex = 2;
+            // 
+            // radioButton9
+            // 
+            radioButton9.AutoSize = true;
+            radioButton9.Checked = true;
+            radioButton9.Location = new Point(198, 51);
+            radioButton9.Name = "radioButton9";
+            radioButton9.Size = new Size(115, 19);
+            radioButton9.TabIndex = 9;
+            radioButton9.TabStop = true;
+            radioButton9.Text = "highest-available";
+            radioButton9.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -181,7 +196,6 @@
             radioButton8.Name = "radioButton8";
             radioButton8.Size = new Size(56, 19);
             radioButton8.TabIndex = 7;
-            radioButton8.TabStop = true;
             radioButton8.Text = "2160p";
             radioButton8.UseVisualStyleBackColor = true;
             // 
@@ -192,7 +206,6 @@
             radioButton7.Name = "radioButton7";
             radioButton7.Size = new Size(56, 19);
             radioButton7.TabIndex = 6;
-            radioButton7.TabStop = true;
             radioButton7.Text = "1440p";
             radioButton7.UseVisualStyleBackColor = true;
             // 
@@ -203,7 +216,6 @@
             radioButton6.Name = "radioButton6";
             radioButton6.Size = new Size(56, 19);
             radioButton6.TabIndex = 5;
-            radioButton6.TabStop = true;
             radioButton6.Text = "1080p";
             radioButton6.UseVisualStyleBackColor = true;
             // 
@@ -214,7 +226,6 @@
             radioButton5.Name = "radioButton5";
             radioButton5.Size = new Size(50, 19);
             radioButton5.TabIndex = 4;
-            radioButton5.TabStop = true;
             radioButton5.Text = "720p";
             radioButton5.UseVisualStyleBackColor = true;
             // 
@@ -225,7 +236,6 @@
             radioButton4.Name = "radioButton4";
             radioButton4.Size = new Size(50, 19);
             radioButton4.TabIndex = 3;
-            radioButton4.TabStop = true;
             radioButton4.Text = "240p";
             radioButton4.UseVisualStyleBackColor = true;
             // 
@@ -236,7 +246,6 @@
             radioButton3.Name = "radioButton3";
             radioButton3.Size = new Size(50, 19);
             radioButton3.TabIndex = 2;
-            radioButton3.TabStop = true;
             radioButton3.Text = "360p";
             radioButton3.UseVisualStyleBackColor = true;
             // 
@@ -247,7 +256,6 @@
             radioButton2.Name = "radioButton2";
             radioButton2.Size = new Size(50, 19);
             radioButton2.TabIndex = 1;
-            radioButton2.TabStop = true;
             radioButton2.Text = "144p";
             radioButton2.UseVisualStyleBackColor = true;
             // 
@@ -258,20 +266,18 @@
             radioButton1.Name = "radioButton1";
             radioButton1.Size = new Size(50, 19);
             radioButton1.TabIndex = 0;
-            radioButton1.TabStop = true;
             radioButton1.Text = "480p";
             radioButton1.UseVisualStyleBackColor = true;
             // 
-            // radioButton9
+            // button1
             // 
-            radioButton9.AutoSize = true;
-            radioButton9.Location = new Point(198, 51);
-            radioButton9.Name = "radioButton9";
-            radioButton9.Size = new Size(115, 19);
-            radioButton9.TabIndex = 9;
-            radioButton9.TabStop = true;
-            radioButton9.Text = "highest-available";
-            radioButton9.UseVisualStyleBackColor = true;
+            button1.Anchor = AnchorStyles.None;
+            button1.Location = new Point(132, 371);
+            button1.Name = "button1";
+            button1.Size = new Size(126, 34);
+            button1.TabIndex = 3;
+            button1.Text = "Begin Download";
+            button1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -318,5 +324,6 @@
         private RadioButton radioButton6;
         private Label label2;
         private RadioButton radioButton9;
+        private Button button1;
     }
 }
