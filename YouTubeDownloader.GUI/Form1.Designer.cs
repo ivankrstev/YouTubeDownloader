@@ -56,9 +56,12 @@
             radioButton11 = new RadioButton();
             radioButton10 = new RadioButton();
             label3 = new Label();
+            tableLayoutPanel2 = new TableLayoutPanel();
             folderBrowserDialog1 = new FolderBrowserDialog();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)MainSplitContainer).BeginInit();
             MainSplitContainer.Panel1.SuspendLayout();
+            MainSplitContainer.Panel2.SuspendLayout();
             MainSplitContainer.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             panel5.SuspendLayout();
@@ -66,6 +69,7 @@
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             panel4.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
             SuspendLayout();
             // 
             // MainSplitContainer
@@ -78,10 +82,14 @@
             // MainSplitContainer.Panel1
             // 
             MainSplitContainer.Panel1.Controls.Add(tableLayoutPanel1);
-            MainSplitContainer.Panel1MinSize = 100;
-            MainSplitContainer.Panel2MinSize = 100;
+            MainSplitContainer.Panel1MinSize = 370;
+            // 
+            // MainSplitContainer.Panel2
+            // 
+            MainSplitContainer.Panel2.Controls.Add(tableLayoutPanel2);
+            MainSplitContainer.Panel2MinSize = 300;
             MainSplitContainer.Size = new Size(780, 430);
-            MainSplitContainer.SplitterDistance = 390;
+            MainSplitContainer.SplitterDistance = 370;
             MainSplitContainer.SplitterWidth = 1;
             MainSplitContainer.TabIndex = 0;
             // 
@@ -97,6 +105,7 @@
             tableLayoutPanel1.Controls.Add(panel4, 0, 3);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.MinimumSize = new Size(320, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 6;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 23.71941F));
@@ -105,7 +114,7 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 9.999894F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 9.999894F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 18.6088F));
-            tableLayoutPanel1.Size = new Size(390, 430);
+            tableLayoutPanel1.Size = new Size(370, 430);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // panel5
@@ -116,7 +125,7 @@
             panel5.Dock = DockStyle.Fill;
             panel5.Location = new Point(3, 306);
             panel5.Name = "panel5";
-            panel5.Size = new Size(384, 36);
+            panel5.Size = new Size(364, 36);
             panel5.TabIndex = 5;
             // 
             // radioButton12
@@ -157,7 +166,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(3, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(384, 95);
+            panel1.Size = new Size(364, 95);
             panel1.TabIndex = 0;
             // 
             // textBox1
@@ -184,7 +193,7 @@
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(3, 104);
             panel2.Name = "panel2";
-            panel2.Size = new Size(384, 65);
+            panel2.Size = new Size(364, 65);
             panel2.TabIndex = 1;
             // 
             // selectFolderButton
@@ -220,7 +229,7 @@
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(3, 175);
             panel3.Name = "panel3";
-            panel3.Size = new Size(384, 83);
+            panel3.Size = new Size(364, 83);
             panel3.TabIndex = 2;
             // 
             // radioButton9
@@ -342,7 +351,7 @@
             panel4.Dock = DockStyle.Fill;
             panel4.Location = new Point(3, 264);
             panel4.Name = "panel4";
-            panel4.Size = new Size(384, 36);
+            panel4.Size = new Size(364, 36);
             panel4.TabIndex = 4;
             // 
             // radioButton11
@@ -376,6 +385,32 @@
             label3.TabIndex = 10;
             label3.Text = "Select Audio Quality:";
             // 
+            // tableLayoutPanel2
+            // 
+            tableLayoutPanel2.ColumnCount = 1;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel2.Controls.Add(label5, 0, 0);
+            tableLayoutPanel2.Dock = DockStyle.Fill;
+            tableLayoutPanel2.Location = new Point(0, 0);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 2;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle());
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel2.Size = new Size(409, 430);
+            tableLayoutPanel2.TabIndex = 0;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Dock = DockStyle.Fill;
+            label5.Font = new Font("Segoe UI", 11F);
+            label5.Location = new Point(3, 25);
+            label5.Margin = new Padding(3, 25, 3, 25);
+            label5.Name = "label5";
+            label5.Size = new Size(403, 40);
+            label5.TabIndex = 1;
+            label5.Text = "Best Data Structures & Algorithms (DSA) Course - Clear Any FAANG Interview!";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -387,6 +422,7 @@
             Padding = new Padding(10);
             Text = "Youtube Downloader";
             MainSplitContainer.Panel1.ResumeLayout(false);
+            MainSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)MainSplitContainer).EndInit();
             MainSplitContainer.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
@@ -400,6 +436,8 @@
             panel3.PerformLayout();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
+            tableLayoutPanel2.ResumeLayout(false);
+            tableLayoutPanel2.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -434,5 +472,7 @@
         private RadioButton radioButton12;
         private RadioButton radioButton13;
         private Label label4;
+        private TableLayoutPanel tableLayoutPanel2;
+        private Label label5;
     }
 }
