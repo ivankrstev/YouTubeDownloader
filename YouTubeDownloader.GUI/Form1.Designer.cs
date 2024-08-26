@@ -419,7 +419,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(MainSplitContainer);
-            MinimumSize = new Size(600, 300);
+            MinimumSize = new Size(700, 300);
             Name = "Form1";
             Padding = new Padding(10);
             Text = "Youtube Downloader";
