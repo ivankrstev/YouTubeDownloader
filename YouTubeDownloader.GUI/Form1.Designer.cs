@@ -57,8 +57,8 @@
             radioButton10 = new RadioButton();
             label3 = new Label();
             tableLayoutPanel2 = new TableLayoutPanel();
-            folderBrowserDialog1 = new FolderBrowserDialog();
             label5 = new Label();
+            folderBrowserDialog1 = new FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)MainSplitContainer).BeginInit();
             MainSplitContainer.Panel1.SuspendLayout();
             MainSplitContainer.Panel2.SuspendLayout();
@@ -75,6 +75,8 @@
             // MainSplitContainer
             // 
             MainSplitContainer.Dock = DockStyle.Fill;
+            MainSplitContainer.FixedPanel = FixedPanel.Panel1;
+            MainSplitContainer.IsSplitterFixed = true;
             MainSplitContainer.Location = new Point(10, 10);
             MainSplitContainer.MinimumSize = new Size(300, 300);
             MainSplitContainer.Name = "MainSplitContainer";
@@ -336,7 +338,7 @@
             // button1
             // 
             button1.Anchor = AnchorStyles.None;
-            button1.Location = new Point(132, 370);
+            button1.Location = new Point(122, 370);
             button1.Name = "button1";
             button1.Size = new Size(126, 34);
             button1.TabIndex = 3;
