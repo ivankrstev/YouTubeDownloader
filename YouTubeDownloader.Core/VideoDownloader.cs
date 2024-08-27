@@ -35,13 +35,8 @@ namespace YouTubeDownloader.Core
                 .GetAudioOnlyStreams()
                 .GetWithHighestBitrate();
 
-            // get the video stream with the specified quality, or the highest quality if not found
-            var videoStreamInfo = streamManifest
-                .GetVideoOnlyStreams()
-                .FirstOrDefault(s => s.VideoQuality.Label.StartsWith(videoQuality))
-                ?? streamManifest
-                .GetVideoOnlyStreams()
-                .GetWithHighestVideoQuality();
+            // get the video stream with the one closest to the specified quality or the highest quality
+            var videoStreamInfo = await GetVideoStreamAsync(downloadOptions);
 
             if (videoStreamInfo != null && audioStreamInfo != null)
             {
@@ -104,6 +99,28 @@ namespace YouTubeDownloader.Core
             {
                 Console.WriteLine($"No suitable stream found for: {videoMetadata.Title}");
             }
+        }
+
+        public async Task<IVideoStreamInfo?> GetVideoStreamAsync(DownloadOptions downloadOptions)
+        {
+            var streamManifest = await _youtube.Videos.Streams.GetManifestAsync(downloadOptions.Url);
+            if (downloadOptions.VideoQuality == "highest-available")
+            {
+                return streamManifest.GetVideoOnlyStreams().GetWithHighestVideoQuality();
+            }
+            var videoStreams = streamManifest
+                .GetVideoOnlyStreams()
+                .Select(s => new
+                {
+                    stream = s,
+                    IsHd = s.VideoQuality.Label.Contains("HDR")
+                })
+                .OrderByDescending(s => s.stream.VideoQuality.Label)
+                .ThenByDescending(s => s.IsHd)
+                .ThenByDescending(s => s.stream.VideoQuality.Framerate)
+                .Where(s => !s.stream.VideoCodec.Contains("av01"))
+                .ToList();
+            return videoStreams.Find(s => s.stream.VideoQuality.MaxHeight <= int.Parse(downloadOptions.VideoQuality.Replace("p", "")))?.stream ?? videoStreams[^1].stream;
         }
     }
 }
