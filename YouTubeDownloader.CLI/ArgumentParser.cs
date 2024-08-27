@@ -9,7 +9,7 @@ namespace YouTubeDownloader.CLI
         private static readonly Dictionary<string, HashSet<string>> validValues = new()
         {
             { "video-quality", new HashSet<string> { "highest-available", "2160p", "1440p", "1080p", "720p", "480p", "360p", "240p", "144p" } },
-            { "audio-quality", new HashSet<string> { "highest-available", "lowest" } },
+            { "audio-quality", new HashSet<string> { "highest-available", "medium", "lowest" } },
             { "format", new HashSet<string> { "mp4", "webm", "mp3" } }
         };
 

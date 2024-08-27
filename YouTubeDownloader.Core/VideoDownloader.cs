@@ -27,13 +27,10 @@ namespace YouTubeDownloader.Core
                 return;
             }
 
-            var streamManifest = await _youtube.Videos.Streams.GetManifestAsync(videoUrl);
             var videoMetadata = await _youtube.Videos.GetAsync(videoUrl);
             var outputFilePath = Path.Combine(outputDirectory, $"{SanitizeFileName(videoMetadata.Title)}.mp4");
-            // get the audio stream with the highest bitrate
-            var audioStreamInfo = streamManifest
-                .GetAudioOnlyStreams()
-                .GetWithHighestBitrate();
+            // get the audio stream with the one closest to the specified quality or the highest quality
+            var audioStreamInfo = await GetAudioStreamAsync(downloadOptions);
 
             // get the video stream with the one closest to the specified quality or the highest quality
             var videoStreamInfo = await GetVideoStreamAsync(downloadOptions);
@@ -80,11 +77,9 @@ namespace YouTubeDownloader.Core
             var videoUrl = downloadOptions.Url;
             var outputDirectory = downloadOptions.OutputDirectory;
 
-            var streamManifest = await _youtube.Videos.Streams.GetManifestAsync(videoUrl);
             var videoMetadata = await _youtube.Videos.GetAsync(videoUrl);
             var outputFilePath = Path.Combine(outputDirectory, $"{SanitizeFileName(videoMetadata.Title)}.mp3");
-            var audioStreamInfo = streamManifest
-                .GetAudioOnlyStreams().GetWithHighestBitrate();
+            var audioStreamInfo = await GetAudioStreamAsync(downloadOptions);
 
             if (audioStreamInfo != null)
             {
@@ -99,6 +94,21 @@ namespace YouTubeDownloader.Core
             {
                 Console.WriteLine($"No suitable stream found for: {videoMetadata.Title}");
             }
+        }
+
+        public async Task<IStreamInfo?> GetAudioStreamAsync(DownloadOptions downloadOptions)
+        {
+            var streamManifest = await _youtube.Videos.Streams.GetManifestAsync(downloadOptions.Url);
+            var audioStreams = streamManifest.GetAudioOnlyStreams()
+                                             .OrderBy(s => s.Bitrate)
+                                             .ToList();
+            return downloadOptions.AudioQuality switch
+            {
+                "lowest" => audioStreams[0],
+                "medium" => audioStreams[audioStreams.Count / 2],
+                "highest-available" => audioStreams[^1],
+                _ => null,
+            };
         }
 
         public async Task<IVideoStreamInfo?> GetVideoStreamAsync(DownloadOptions downloadOptions)
