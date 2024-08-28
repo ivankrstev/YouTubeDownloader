@@ -18,7 +18,7 @@ namespace YouTubeDownloader.CLI
             }
             else
             {
-                await new VideoDownloader().DownloadVideoAsync(downloadOptions);
+                await new VideoDownloader().DownloadVideoAsync(downloadOptions, Console.WriteLine);
             }
         }
     }

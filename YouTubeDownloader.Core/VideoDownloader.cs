@@ -14,14 +14,14 @@ namespace YouTubeDownloader.Core
             _youtube = new YoutubeClient();
         }
 
-        public async Task DownloadVideoAsync(DownloadOptions downloadOptions)
+        public async Task DownloadVideoAsync(DownloadOptions downloadOptions, Action<string>? logAction = null)
         {
             var format = downloadOptions.Format;
 
             var (data, errorMessage) = await TryGetVideoMetadata(downloadOptions);
             if (errorMessage != null)
             {
-                Console.WriteLine(errorMessage);
+                logAction?.Invoke(errorMessage);
                 return;
             }
             var videoMetadata = data!;
@@ -31,21 +31,21 @@ namespace YouTubeDownloader.Core
                 var audioStreamInfoMp3 = await GetAudioStreamAsync(downloadOptions);
                 if (audioStreamInfoMp3 == null)
                 {
-                    Console.WriteLine($"No suitable audio stream found for: {videoMetadata.Title}");
+                    logAction?.Invoke($"No suitable audio stream found for: {videoMetadata.Title}");
                     return;
                 }
-                Console.WriteLine($"- Title: {videoMetadata.Title}");
-                Console.WriteLine($"  Length: {videoMetadata.Duration} | Size: {FormatSize(audioStreamInfoMp3.Size.Bytes)}");
-                Console.WriteLine($"  Bitrate: {audioStreamInfoMp3.Bitrate}");
+                logAction?.Invoke($"- Title: {videoMetadata.Title}");
+                logAction?.Invoke($"  Length: {videoMetadata.Duration} | Size: {FormatSize(audioStreamInfoMp3.Size.Bytes)}");
+                logAction?.Invoke($"  Bitrate: {audioStreamInfoMp3.Bitrate}");
                 var streamInfo = new IStreamInfo[] { audioStreamInfoMp3 };
                 var (downloadedSuccessfullyMp3, responseMessageMp3) = await TryDownloadVideoOrAudioAsync(downloadOptions, streamInfo, videoMetadata);
                 if (!downloadedSuccessfullyMp3)
                 {
-                    Console.WriteLine(responseMessageMp3);
+                    logAction?.Invoke(responseMessageMp3);
                     return;
                 }
-                Console.WriteLine("Downloaded!");
-                Console.WriteLine();
+                logAction?.Invoke("Downloaded!");
+                logAction?.Invoke("");
                 return;
             }
 
@@ -56,21 +56,21 @@ namespace YouTubeDownloader.Core
 
             if (videoStreamInfo == null || audioStreamInfo == null)
             {
-                Console.WriteLine($"No suitable stream found for: {videoMetadata.Title}");
+                logAction?.Invoke($"No suitable stream found for: {videoMetadata.Title}");
                 return;
             }
-            Console.WriteLine($"- Title: {videoMetadata.Title}");
-            Console.WriteLine($"  Length: {videoMetadata.Duration} | Size: {FormatSize(audioStreamInfo.Size.Bytes + videoStreamInfo.Size.Bytes)}");
-            Console.WriteLine($"  Quality: {videoStreamInfo.VideoQuality.Label} | {audioStreamInfo.Bitrate}");
+            logAction?.Invoke($"- Title: {videoMetadata.Title}");
+            logAction?.Invoke($"  Length: {videoMetadata.Duration} | Size: {FormatSize(audioStreamInfo.Size.Bytes + videoStreamInfo.Size.Bytes)}");
+            logAction?.Invoke($"  Quality: {videoStreamInfo.VideoQuality.Label} | {audioStreamInfo.Bitrate}");
             var streamInfos = new IStreamInfo[] { audioStreamInfo, videoStreamInfo };
             var (downloadedSuccessfully, responseMessage) = await TryDownloadVideoOrAudioAsync(downloadOptions, streamInfos, videoMetadata);
             if (!downloadedSuccessfully)
             {
-                Console.WriteLine(responseMessage);
+                logAction?.Invoke(responseMessage);
                 return;
             }
-            Console.WriteLine("Downloaded!");
-            Console.WriteLine();
+            logAction?.Invoke("Downloaded!");
+            logAction?.Invoke("");
         }
 
         private static string SanitizeFileName(string fileName)
