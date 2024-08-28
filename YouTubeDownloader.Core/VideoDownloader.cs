@@ -14,7 +14,7 @@ namespace YouTubeDownloader.Core
             _youtube = new YoutubeClient();
         }
 
-        public async Task DownloadVideoAsync(DownloadOptions downloadOptions, Action<string>? logAction = null)
+        public async Task<(bool success, string message)> DownloadVideoAsync(DownloadOptions downloadOptions, Action<string>? logAction = null)
         {
             var format = downloadOptions.Format;
 
@@ -22,7 +22,7 @@ namespace YouTubeDownloader.Core
             if (errorMessage != null)
             {
                 logAction?.Invoke(errorMessage);
-                return;
+                return (false, errorMessage);
             }
             var videoMetadata = data!;
 
@@ -32,7 +32,7 @@ namespace YouTubeDownloader.Core
                 if (audioStreamInfoMp3 == null)
                 {
                     logAction?.Invoke($"No suitable audio stream found for: {videoMetadata.Title}");
-                    return;
+                    return (false, $"No suitable audio stream found for: {videoMetadata.Title}");
                 }
                 logAction?.Invoke($"- Title: {videoMetadata.Title}");
                 logAction?.Invoke($"  Length: {videoMetadata.Duration} | Size: {FormatSize(audioStreamInfoMp3.Size.Bytes)}");
@@ -42,11 +42,11 @@ namespace YouTubeDownloader.Core
                 if (!downloadedSuccessfullyMp3)
                 {
                     logAction?.Invoke(responseMessageMp3);
-                    return;
+                    return (false, responseMessageMp3);
                 }
                 logAction?.Invoke("Downloaded!");
                 logAction?.Invoke("");
-                return;
+                return (true, videoMetadata.Title);
             }
 
             // get the audio stream with the one closest to the specified quality or the highest quality
@@ -57,7 +57,7 @@ namespace YouTubeDownloader.Core
             if (videoStreamInfo == null || audioStreamInfo == null)
             {
                 logAction?.Invoke($"No suitable stream found for: {videoMetadata.Title}");
-                return;
+                return (false, $"No suitable stream found for: {videoMetadata.Title}");
             }
             logAction?.Invoke($"- Title: {videoMetadata.Title}");
             logAction?.Invoke($"  Length: {videoMetadata.Duration} | Size: {FormatSize(audioStreamInfo.Size.Bytes + videoStreamInfo.Size.Bytes)}");
@@ -67,10 +67,11 @@ namespace YouTubeDownloader.Core
             if (!downloadedSuccessfully)
             {
                 logAction?.Invoke(responseMessage);
-                return;
+                return (false, responseMessage);
             }
             logAction?.Invoke("Downloaded!");
             logAction?.Invoke("");
+            return (true, videoMetadata.Title);
         }
 
         private static string SanitizeFileName(string fileName)
