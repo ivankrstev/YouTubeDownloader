@@ -1,5 +1,6 @@
 ﻿using YoutubeExplode;
 using YoutubeExplode.Converter;
+using YoutubeExplode.Videos;
 using YoutubeExplode.Videos.Streams;
 
 namespace YouTubeDownloader.Core
@@ -131,6 +132,22 @@ namespace YouTubeDownloader.Core
                 .Where(s => !s.stream.VideoCodec.Contains("av01"))
                 .ToList();
             return videoStreams.Find(s => s.stream.VideoQuality.MaxHeight <= int.Parse(downloadOptions.VideoQuality.Replace("p", "")))?.stream ?? videoStreams[^1].stream;
+        }
+
+        public async Task<(Video? data, string? errorMessage)> TryGetVideoMetadata(DownloadOptions downloadOptions)
+        {
+            try
+            {
+                return (await _youtube.Videos.GetAsync(downloadOptions.Url), null);
+            }
+            catch (HttpRequestException)
+            {
+                return (null, "Network error: Failed to get video metadata");
+            }
+            catch (Exception)
+            {
+                return (null, "Failed to get video metadata");
+            }
         }
 
         public async Task<(bool downloadedSuccessfully, string responseMessage)> TryDownloadVideoOrAudioAsync(DownloadOptions downloadOptions, IStreamInfo[] streamInfos, Video videoMetadata)
