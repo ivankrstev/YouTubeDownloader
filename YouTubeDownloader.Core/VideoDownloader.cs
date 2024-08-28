@@ -132,5 +132,27 @@ namespace YouTubeDownloader.Core
                 .ToList();
             return videoStreams.Find(s => s.stream.VideoQuality.MaxHeight <= int.Parse(downloadOptions.VideoQuality.Replace("p", "")))?.stream ?? videoStreams[^1].stream;
         }
+
+        public async Task<(bool downloadedSuccessfully, string responseMessage)> TryDownloadVideoOrAudioAsync(DownloadOptions downloadOptions, IStreamInfo[] streamInfos, Video videoMetadata)
+        {
+            var outputDirectory = downloadOptions.OutputDirectory;
+            var format = downloadOptions.Format;
+            string? videoTitle = null;
+            try
+            {
+                videoTitle = videoMetadata.Title;
+                var outputFilePath = Path.Combine(outputDirectory, $"{SanitizeFileName(videoTitle)}.{format}");
+                await _youtube.Videos.DownloadAsync(streamInfos, new ConversionRequestBuilder(outputFilePath).Build());
+                return (true, videoTitle);
+            }
+            catch (HttpRequestException)
+            {
+                return (false, $"Network error: Failed to download the video {videoTitle ?? string.Empty}");
+            }
+            catch (Exception)
+            {
+                return (false, $"Failed to download the video {videoTitle ?? string.Empty}");
+            }
+        }
     }
 }
