@@ -16,40 +16,61 @@ namespace YouTubeDownloader.Core
 
         public async Task DownloadVideoAsync(DownloadOptions downloadOptions)
         {
-            var videoUrl = downloadOptions.Url;
-            var outputDirectory = downloadOptions.OutputDirectory;
-            var videoQuality = downloadOptions.VideoQuality;
-            var audioQuality = downloadOptions.AudioQuality;
             var format = downloadOptions.Format;
+
+            var (data, errorMessage) = await TryGetVideoMetadata(downloadOptions);
+            if (errorMessage != null)
+            {
+                Console.WriteLine(errorMessage);
+                return;
+            }
+            var videoMetadata = data!;
 
             if (format == "mp3")
             {
-                await DownloadAudioAsync(downloadOptions);
+                var audioStreamInfoMp3 = await GetAudioStreamAsync(downloadOptions);
+                if (audioStreamInfoMp3 == null)
+                {
+                    Console.WriteLine($"No suitable audio stream found for: {videoMetadata.Title}");
+                    return;
+                }
+                Console.WriteLine($"- Title: {videoMetadata.Title}");
+                Console.WriteLine($"  Length: {videoMetadata.Duration} | Size: {FormatSize(audioStreamInfoMp3.Size.Bytes)}");
+                Console.WriteLine($"  Bitrate: {audioStreamInfoMp3.Bitrate}");
+                var streamInfo = new IStreamInfo[] { audioStreamInfoMp3 };
+                var (downloadedSuccessfullyMp3, responseMessageMp3) = await TryDownloadVideoOrAudioAsync(downloadOptions, streamInfo, videoMetadata);
+                if (!downloadedSuccessfullyMp3)
+                {
+                    Console.WriteLine(responseMessageMp3);
+                    return;
+                }
+                Console.WriteLine("Downloaded!");
+                Console.WriteLine();
                 return;
             }
 
-            var videoMetadata = await _youtube.Videos.GetAsync(videoUrl);
-            var outputFilePath = Path.Combine(outputDirectory, $"{SanitizeFileName(videoMetadata.Title)}.mp4");
             // get the audio stream with the one closest to the specified quality or the highest quality
             var audioStreamInfo = await GetAudioStreamAsync(downloadOptions);
-
             // get the video stream with the one closest to the specified quality or the highest quality
             var videoStreamInfo = await GetVideoStreamAsync(downloadOptions);
 
-            if (videoStreamInfo != null && audioStreamInfo != null)
-            {
-                Console.WriteLine($"- Title: {videoMetadata.Title}");
-                Console.WriteLine($"  Length: {videoMetadata.Duration} | Size: {FormatSize(audioStreamInfo.Size.Bytes + videoStreamInfo.Size.Bytes)}");
-                Console.WriteLine($"  Quality: {videoStreamInfo.VideoQuality.Label} | {audioStreamInfo.Bitrate}");
-                var streamInfos = new IStreamInfo[] { audioStreamInfo, videoStreamInfo };
-                await _youtube.Videos.DownloadAsync(streamInfos, new ConversionRequestBuilder(outputFilePath).Build());
-                Console.WriteLine("Downloaded!");
-                Console.WriteLine();
-            }
-            else
+            if (videoStreamInfo == null || audioStreamInfo == null)
             {
                 Console.WriteLine($"No suitable stream found for: {videoMetadata.Title}");
+                return;
             }
+            Console.WriteLine($"- Title: {videoMetadata.Title}");
+            Console.WriteLine($"  Length: {videoMetadata.Duration} | Size: {FormatSize(audioStreamInfo.Size.Bytes + videoStreamInfo.Size.Bytes)}");
+            Console.WriteLine($"  Quality: {videoStreamInfo.VideoQuality.Label} | {audioStreamInfo.Bitrate}");
+            var streamInfos = new IStreamInfo[] { audioStreamInfo, videoStreamInfo };
+            var (downloadedSuccessfully, responseMessage) = await TryDownloadVideoOrAudioAsync(downloadOptions, streamInfos, videoMetadata);
+            if (!downloadedSuccessfully)
+            {
+                Console.WriteLine(responseMessage);
+                return;
+            }
+            Console.WriteLine("Downloaded!");
+            Console.WriteLine();
         }
 
         private static string SanitizeFileName(string fileName)
@@ -71,30 +92,6 @@ namespace YouTubeDownloader.Core
                 size /= 1024;
             }
             return $"{size:0.##} {sizes[order]}";
-        }
-
-        private async Task DownloadAudioAsync(DownloadOptions downloadOptions)
-        {
-            var videoUrl = downloadOptions.Url;
-            var outputDirectory = downloadOptions.OutputDirectory;
-
-            var videoMetadata = await _youtube.Videos.GetAsync(videoUrl);
-            var outputFilePath = Path.Combine(outputDirectory, $"{SanitizeFileName(videoMetadata.Title)}.mp3");
-            var audioStreamInfo = await GetAudioStreamAsync(downloadOptions);
-
-            if (audioStreamInfo != null)
-            {
-                Console.WriteLine($"- Title: {videoMetadata.Title}");
-                Console.WriteLine($"  Length: {videoMetadata.Duration} | Size: {FormatSize(audioStreamInfo.Size.Bytes)}");
-                Console.WriteLine($"  Bitrate: {audioStreamInfo.Bitrate}");
-                await _youtube.Videos.DownloadAsync([audioStreamInfo], new ConversionRequestBuilder(outputFilePath).Build());
-                Console.WriteLine("Downloaded!");
-                Console.WriteLine();
-            }
-            else
-            {
-                Console.WriteLine($"No suitable stream found for: {videoMetadata.Title}");
-            }
         }
 
         public async Task<IStreamInfo?> GetAudioStreamAsync(DownloadOptions downloadOptions)
