@@ -1,4 +1,3 @@
-using System.Windows.Forms;
 using YouTubeDownloader.Core;
 using static YouTubeDownloader.Core.DownloadOptions;
 
@@ -36,6 +35,7 @@ namespace YouTubeDownloader.GUI
 
             if (!isPlaylist)
             {
+                CleanUpInfoLabels();
                 DownloadOptions downloadOptions = new()
                 {
                     Url = normalizedUrl,
@@ -80,6 +80,17 @@ namespace YouTubeDownloader.GUI
             }
             if (panel.Name == "outputFormatPanel") return "mp4";
             return "highest-available";
+        }
+
+        private void CleanUpInfoLabels()
+        {
+            foreach (var control in videoInfoPanel.Controls)
+            {
+                if (control is Label label)
+                {
+                    label.Text = "";
+                }
+            }
         }
     }
 }
