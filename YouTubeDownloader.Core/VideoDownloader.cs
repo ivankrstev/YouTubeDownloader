@@ -22,7 +22,6 @@ namespace YouTubeDownloader.Core
             if (errorMessage != null)
             {
                 logAction?.Invoke(errorMessage);
-                //return (false, new() { Message = errorMessage });
                 return new() { Message = errorMessage };
             }
             var videoMetadata = data!;
@@ -33,7 +32,6 @@ namespace YouTubeDownloader.Core
                 if (audioStreamInfoMp3 == null)
                 {
                     logAction?.Invoke($"No suitable audio stream found for: {videoMetadata.Title}");
-                    //return (false, new VideoDownloadResponse() { Message = $"No suitable audio stream found for: {videoMetadata.Title}" });
                     return new VideoDownloadResponse() { Message = $"No suitable audio stream found for: {videoMetadata.Title}" };
                 }
                 logAction?.Invoke($"- Title: {videoMetadata.Title}");
@@ -44,12 +42,10 @@ namespace YouTubeDownloader.Core
                 if (!downloadedSuccessfullyMp3)
                 {
                     logAction?.Invoke(responseMessageMp3);
-                    //return (false, new() { Message = responseMessageMp3 });
                     return new() { Message = responseMessageMp3 };
                 }
                 logAction?.Invoke("Downloaded!");
                 logAction?.Invoke("");
-                //return (true, new() { Message = videoMetadata.Title, Size = FormatSize(audioStreamInfoMp3.Size.Bytes), VideoAudioQuality = $"Bitrate: {audioStreamInfoMp3.Bitrate}" });
                 return new() { Size = FormatSize(audioStreamInfoMp3.Size.Bytes), VideoAudioQuality = $"Bitrate: {audioStreamInfoMp3.Bitrate}" };
             }
 
@@ -100,7 +96,7 @@ namespace YouTubeDownloader.Core
             return $"{size:0.##} {sizes[order]}";
         }
 
-        public async Task<IStreamInfo?> GetAudioStreamAsync(DownloadOptions downloadOptions)
+        private async Task<IStreamInfo?> GetAudioStreamAsync(DownloadOptions downloadOptions)
         {
             var streamManifest = await _youtube.Videos.Streams.GetManifestAsync(downloadOptions.Url);
             var audioStreams = streamManifest.GetAudioOnlyStreams()
@@ -116,7 +112,7 @@ namespace YouTubeDownloader.Core
             };
         }
 
-        public async Task<IVideoStreamInfo?> GetVideoStreamAsync(DownloadOptions downloadOptions)
+        private async Task<IVideoStreamInfo?> GetVideoStreamAsync(DownloadOptions downloadOptions)
         {
             var streamManifest = await _youtube.Videos.Streams.GetManifestAsync(downloadOptions.Url);
             if (downloadOptions.VideoQuality == "highest-available")
@@ -154,7 +150,7 @@ namespace YouTubeDownloader.Core
             }
         }
 
-        public async Task<(bool downloadedSuccessfully, string responseMessage)> TryDownloadVideoOrAudioAsync(DownloadOptions downloadOptions, IStreamInfo[] streamInfos, Video videoMetadata)
+        private async Task<(bool downloadedSuccessfully, string responseMessage)> TryDownloadVideoOrAudioAsync(DownloadOptions downloadOptions, IStreamInfo[] streamInfos, Video videoMetadata)
         {
             var outputDirectory = downloadOptions.OutputDirectory;
             var format = downloadOptions.Format;
