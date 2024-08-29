@@ -39,9 +39,9 @@ namespace YouTubeDownloader.GUI
                 DownloadOptions downloadOptions = new()
                 {
                     Url = normalizedUrl,
-                    VideoQuality = "highest-available",
-                    AudioQuality = "highest-available",
-                    Format = "mp4",
+                    VideoQuality = GetSelectedRadioButton(videoQualityPanel),
+                    AudioQuality = GetSelectedRadioButton(audioQualityPanel),
+                    Format = GetSelectedRadioButton(outputFormatPanel),
                     OutputDirectory = selectedFolderTextBox.Text,
                     IsPlaylist = false
                 };
@@ -67,6 +67,19 @@ namespace YouTubeDownloader.GUI
                     MessageBox.Show(videoDownloadResponse.Message);
                 }
             }
+        }
+
+        private static string GetSelectedRadioButton(Panel panel)
+        {
+            foreach (var control in panel.Controls)
+            {
+                if (control is RadioButton radioButton && radioButton.Checked)
+                {
+                    return radioButton.Text;
+                }
+            }
+            if (panel.Name == "outputFormatPanel") return "mp4";
+            return "highest-available";
         }
     }
 }
