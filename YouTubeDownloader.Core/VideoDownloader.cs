@@ -129,7 +129,7 @@ namespace YouTubeDownloader.Core
                     stream = s,
                     IsHd = s.VideoQuality.Label.Contains("HDR")
                 })
-                .OrderByDescending(s => s.stream.VideoQuality.Label)
+                .OrderByDescending(s => int.Parse(s.stream.VideoQuality.Label.Replace("p", "")))
                 .ThenByDescending(s => s.IsHd)
                 .ThenByDescending(s => s.stream.VideoQuality.Framerate)
                 .Where(s => !s.stream.VideoCodec.Contains("av01"))
