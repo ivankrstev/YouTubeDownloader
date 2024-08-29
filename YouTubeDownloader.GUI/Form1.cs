@@ -1,3 +1,4 @@
+using System.Windows.Forms;
 using YouTubeDownloader.Core;
 using static YouTubeDownloader.Core.DownloadOptions;
 
@@ -52,15 +53,18 @@ namespace YouTubeDownloader.GUI
                     return;
                 }
                 var videoMetadata = data!;
-                mainTitleLabel.Text = $"Video Title: {videoMetadata.Title}";
-                var (success, message) = await videoDownloader.DownloadVideoAsync(downloadOptions);
-                if (success)
+                mainTitleLabel.Text = $"Selected video: {videoMetadata.Title}";
+                var videoDownloadResponse = await videoDownloader.DownloadVideoAsync(downloadOptions);
+                if (videoDownloadResponse.Size != null && videoDownloadResponse.VideoAudioQuality != null)
                 {
+                    videoLengthLabel.Text = $"Video Length: {videoMetadata.Duration}";
+                    videoSizeLabel.Text = $"Video Size: {videoDownloadResponse.Size}";
+                    downloadedQualityLabel.Text = videoDownloadResponse.VideoAudioQuality;
                     MessageBox.Show("Download completed.");
                 }
                 else
                 {
-                    MessageBox.Show(message);
+                    MessageBox.Show(videoDownloadResponse.Message);
                 }
             }
         }
