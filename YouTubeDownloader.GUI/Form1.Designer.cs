@@ -51,7 +51,7 @@
             radioButton360p = new RadioButton();
             radioButton144p = new RadioButton();
             radioButton480p = new RadioButton();
-            button1 = new Button();
+            beginDownloadButton = new Button();
             audioQualityPanel = new Panel();
             radioButtonHighest = new RadioButton();
             radioButtonLowest = new RadioButton();
@@ -108,7 +108,7 @@
             tableLayoutPanel1.Controls.Add(panel1, 0, 0);
             tableLayoutPanel1.Controls.Add(panel2, 0, 1);
             tableLayoutPanel1.Controls.Add(videoQualityPanel, 0, 2);
-            tableLayoutPanel1.Controls.Add(button1, 0, 5);
+            tableLayoutPanel1.Controls.Add(beginDownloadButton, 0, 5);
             tableLayoutPanel1.Controls.Add(audioQualityPanel, 0, 3);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
@@ -340,16 +340,16 @@
             radioButton480p.Text = "480p";
             radioButton480p.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // beginDownloadButton
             // 
-            button1.Anchor = AnchorStyles.None;
-            button1.Location = new Point(122, 370);
-            button1.Name = "button1";
-            button1.Size = new Size(126, 34);
-            button1.TabIndex = 3;
-            button1.Text = "Begin Download";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += Button1_Click;
+            beginDownloadButton.Anchor = AnchorStyles.None;
+            beginDownloadButton.Location = new Point(122, 370);
+            beginDownloadButton.Name = "beginDownloadButton";
+            beginDownloadButton.Size = new Size(126, 34);
+            beginDownloadButton.TabIndex = 3;
+            beginDownloadButton.Text = "Begin Download";
+            beginDownloadButton.UseVisualStyleBackColor = true;
+            beginDownloadButton.Click += Button1_Click;
             // 
             // audioQualityPanel
             // 
@@ -514,7 +514,7 @@
         private RadioButton radioButton1080p;
         private Label label2;
         private RadioButton radioButtonHighestAvailable;
-        private Button button1;
+        private Button beginDownloadButton;
         private Panel audioQualityPanel;
         private RadioButton radioButtonHighest;
         private RadioButton radioButtonLowest;

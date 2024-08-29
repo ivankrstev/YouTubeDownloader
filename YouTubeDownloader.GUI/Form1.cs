@@ -20,6 +20,8 @@ namespace YouTubeDownloader.GUI
 
         private async void Button1_Click(object sender, EventArgs e)
         {
+            beginDownloadButton.Enabled = false;
+            beginDownloadButton.Text = "Downloading...";
             string videoUrl = urlTextBox.Text;
             if (string.IsNullOrEmpty(videoUrl))
             {
@@ -67,6 +69,8 @@ namespace YouTubeDownloader.GUI
                     MessageBox.Show(videoDownloadResponse.Message);
                 }
             }
+            beginDownloadButton.Enabled = true;
+            beginDownloadButton.Text = "Begin Download";
         }
 
         private static string GetSelectedRadioButton(Panel panel)
