@@ -58,6 +58,10 @@
             label3 = new Label();
             tableLayoutPanel2 = new TableLayoutPanel();
             mainTitleLabel = new Label();
+            videoInfoPanel = new Panel();
+            videoSizeLabel = new Label();
+            videoLengthLabel = new Label();
+            downloadedQualityLabel = new Label();
             folderBrowserDialog1 = new FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)MainSplitContainer).BeginInit();
             MainSplitContainer.Panel1.SuspendLayout();
@@ -70,6 +74,7 @@
             videoQualityPanel.SuspendLayout();
             audioQualityPanel.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
+            videoInfoPanel.SuspendLayout();
             SuspendLayout();
             // 
             // MainSplitContainer
@@ -393,6 +398,7 @@
             tableLayoutPanel2.ColumnCount = 1;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel2.Controls.Add(mainTitleLabel, 0, 0);
+            tableLayoutPanel2.Controls.Add(videoInfoPanel, 0, 1);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(0, 0);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -410,9 +416,49 @@
             mainTitleLabel.Location = new Point(3, 25);
             mainTitleLabel.Margin = new Padding(3, 25, 3, 25);
             mainTitleLabel.Name = "mainTitleLabel";
-            mainTitleLabel.Size = new Size(403, 40);
+            mainTitleLabel.Size = new Size(403, 20);
             mainTitleLabel.TabIndex = 1;
-            mainTitleLabel.Text = "Best Data Structures & Algorithms (DSA) Course - Clear Any FAANG Interview!";
+            mainTitleLabel.Text = "No video or playlist selected.";
+            // 
+            // videoInfoPanel
+            // 
+            videoInfoPanel.AutoSize = true;
+            videoInfoPanel.Controls.Add(videoSizeLabel);
+            videoInfoPanel.Controls.Add(videoLengthLabel);
+            videoInfoPanel.Controls.Add(downloadedQualityLabel);
+            videoInfoPanel.Dock = DockStyle.Fill;
+            videoInfoPanel.Location = new Point(3, 73);
+            videoInfoPanel.Name = "videoInfoPanel";
+            videoInfoPanel.Padding = new Padding(15);
+            videoInfoPanel.Size = new Size(403, 354);
+            videoInfoPanel.TabIndex = 2;
+            // 
+            // videoSizeLabel
+            // 
+            videoSizeLabel.AutoSize = true;
+            videoSizeLabel.Font = new Font("Segoe UI", 10F);
+            videoSizeLabel.Location = new Point(18, 46);
+            videoSizeLabel.Name = "videoSizeLabel";
+            videoSizeLabel.Size = new Size(0, 19);
+            videoSizeLabel.TabIndex = 2;
+            // 
+            // videoLengthLabel
+            // 
+            videoLengthLabel.AutoSize = true;
+            videoLengthLabel.Font = new Font("Segoe UI", 10F);
+            videoLengthLabel.Location = new Point(18, 15);
+            videoLengthLabel.Name = "videoLengthLabel";
+            videoLengthLabel.Size = new Size(0, 19);
+            videoLengthLabel.TabIndex = 1;
+            // 
+            // downloadedQualityLabel
+            // 
+            downloadedQualityLabel.AutoSize = true;
+            downloadedQualityLabel.Font = new Font("Segoe UI", 10F);
+            downloadedQualityLabel.Location = new Point(18, 77);
+            downloadedQualityLabel.Name = "downloadedQualityLabel";
+            downloadedQualityLabel.Size = new Size(0, 19);
+            downloadedQualityLabel.TabIndex = 0;
             // 
             // Form1
             // 
@@ -441,6 +487,8 @@
             audioQualityPanel.PerformLayout();
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel2.PerformLayout();
+            videoInfoPanel.ResumeLayout(false);
+            videoInfoPanel.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -477,5 +525,9 @@
         private Label label4;
         private TableLayoutPanel tableLayoutPanel2;
         private Label mainTitleLabel;
+        private Panel videoInfoPanel;
+        private Label downloadedQualityLabel;
+        private Label videoLengthLabel;
+        private Label videoSizeLabel;
     }
 }
