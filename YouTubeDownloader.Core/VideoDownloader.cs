@@ -110,6 +110,7 @@ namespace YouTubeDownloader.Core
             {
                 "lowest" => audioStreams[0],
                 "medium" => audioStreams[audioStreams.Count / 2],
+                "highest" => audioStreams[^1],
                 "highest-available" => audioStreams[^1],
                 _ => null,
             };
