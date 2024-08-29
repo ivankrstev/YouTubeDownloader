@@ -35,7 +35,7 @@
             radioButton13 = new RadioButton();
             label4 = new Label();
             panel1 = new Panel();
-            textBox1 = new TextBox();
+            urlTextBox = new TextBox();
             label1 = new Label();
             panel2 = new Panel();
             selectFolderButton = new Button();
@@ -57,7 +57,7 @@
             radioButton10 = new RadioButton();
             label3 = new Label();
             tableLayoutPanel2 = new TableLayoutPanel();
-            label5 = new Label();
+            mainTitleLabel = new Label();
             folderBrowserDialog1 = new FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)MainSplitContainer).BeginInit();
             MainSplitContainer.Panel1.SuspendLayout();
@@ -163,7 +163,7 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(urlTextBox);
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(3, 3);
@@ -171,13 +171,13 @@
             panel1.Size = new Size(364, 95);
             panel1.TabIndex = 0;
             // 
-            // textBox1
+            // urlTextBox
             // 
-            textBox1.Location = new Point(30, 50);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Paste the URL or ID here...";
-            textBox1.Size = new Size(321, 23);
-            textBox1.TabIndex = 1;
+            urlTextBox.Location = new Point(30, 50);
+            urlTextBox.Name = "urlTextBox";
+            urlTextBox.PlaceholderText = "Paste the URL or ID here...";
+            urlTextBox.Size = new Size(321, 23);
+            urlTextBox.TabIndex = 1;
             // 
             // label1
             // 
@@ -344,6 +344,7 @@
             button1.TabIndex = 3;
             button1.Text = "Begin Download";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += Button1_Click;
             // 
             // panel4
             // 
@@ -391,7 +392,7 @@
             // 
             tableLayoutPanel2.ColumnCount = 1;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel2.Controls.Add(label5, 0, 0);
+            tableLayoutPanel2.Controls.Add(mainTitleLabel, 0, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(0, 0);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -401,17 +402,17 @@
             tableLayoutPanel2.Size = new Size(409, 430);
             tableLayoutPanel2.TabIndex = 0;
             // 
-            // label5
+            // mainTitleLabel
             // 
-            label5.AutoSize = true;
-            label5.Dock = DockStyle.Fill;
-            label5.Font = new Font("Segoe UI", 11F);
-            label5.Location = new Point(3, 25);
-            label5.Margin = new Padding(3, 25, 3, 25);
-            label5.Name = "label5";
-            label5.Size = new Size(403, 40);
-            label5.TabIndex = 1;
-            label5.Text = "Best Data Structures & Algorithms (DSA) Course - Clear Any FAANG Interview!";
+            mainTitleLabel.AutoSize = true;
+            mainTitleLabel.Dock = DockStyle.Fill;
+            mainTitleLabel.Font = new Font("Segoe UI", 11F);
+            mainTitleLabel.Location = new Point(3, 25);
+            mainTitleLabel.Margin = new Padding(3, 25, 3, 25);
+            mainTitleLabel.Name = "mainTitleLabel";
+            mainTitleLabel.Size = new Size(403, 40);
+            mainTitleLabel.TabIndex = 1;
+            mainTitleLabel.Text = "Best Data Structures & Algorithms (DSA) Course - Clear Any FAANG Interview!";
             // 
             // Form1
             // 
@@ -448,7 +449,7 @@
         private SplitContainer MainSplitContainer;
         private TableLayoutPanel tableLayoutPanel1;
         private Panel panel1;
-        private TextBox textBox1;
+        private TextBox urlTextBox;
         private Label label1;
         private Panel panel2;
         private TextBox selectedFolderTextBox;
@@ -475,6 +476,6 @@
         private RadioButton radioButton13;
         private Label label4;
         private TableLayoutPanel tableLayoutPanel2;
-        private Label label5;
+        private Label mainTitleLabel;
     }
 }
