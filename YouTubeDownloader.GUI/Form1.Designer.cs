@@ -30,9 +30,9 @@
         {
             MainSplitContainer = new SplitContainer();
             tableLayoutPanel1 = new TableLayoutPanel();
-            panel5 = new Panel();
-            radioButton12 = new RadioButton();
-            radioButton13 = new RadioButton();
+            outputFormatPanel = new Panel();
+            radioButtonMp3 = new RadioButton();
+            radioButtonMp4 = new RadioButton();
             label4 = new Label();
             panel1 = new Panel();
             urlTextBox = new TextBox();
@@ -40,21 +40,21 @@
             panel2 = new Panel();
             selectFolderButton = new Button();
             selectedFolderTextBox = new TextBox();
-            panel3 = new Panel();
-            radioButton9 = new RadioButton();
+            videoQualityPanel = new Panel();
+            radioButtonHighestAvailable = new RadioButton();
             label2 = new Label();
-            radioButton8 = new RadioButton();
-            radioButton7 = new RadioButton();
-            radioButton6 = new RadioButton();
-            radioButton5 = new RadioButton();
-            radioButton4 = new RadioButton();
-            radioButton3 = new RadioButton();
-            radioButton2 = new RadioButton();
-            radioButton1 = new RadioButton();
+            radioButton2160p = new RadioButton();
+            radioButton1440p = new RadioButton();
+            radioButton1080p = new RadioButton();
+            radioButton720p = new RadioButton();
+            radioButton240p = new RadioButton();
+            radioButton360p = new RadioButton();
+            radioButton144p = new RadioButton();
+            radioButton480p = new RadioButton();
             button1 = new Button();
-            panel4 = new Panel();
-            radioButton11 = new RadioButton();
-            radioButton10 = new RadioButton();
+            audioQualityPanel = new Panel();
+            radioButtonHighest = new RadioButton();
+            radioButtonLowest = new RadioButton();
             label3 = new Label();
             tableLayoutPanel2 = new TableLayoutPanel();
             mainTitleLabel = new Label();
@@ -64,11 +64,11 @@
             MainSplitContainer.Panel2.SuspendLayout();
             MainSplitContainer.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
-            panel5.SuspendLayout();
+            outputFormatPanel.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
-            panel3.SuspendLayout();
-            panel4.SuspendLayout();
+            videoQualityPanel.SuspendLayout();
+            audioQualityPanel.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             SuspendLayout();
             // 
@@ -99,12 +99,12 @@
             // 
             tableLayoutPanel1.ColumnCount = 1;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Controls.Add(panel5, 0, 4);
+            tableLayoutPanel1.Controls.Add(outputFormatPanel, 0, 4);
             tableLayoutPanel1.Controls.Add(panel1, 0, 0);
             tableLayoutPanel1.Controls.Add(panel2, 0, 1);
-            tableLayoutPanel1.Controls.Add(panel3, 0, 2);
+            tableLayoutPanel1.Controls.Add(videoQualityPanel, 0, 2);
             tableLayoutPanel1.Controls.Add(button1, 0, 5);
-            tableLayoutPanel1.Controls.Add(panel4, 0, 3);
+            tableLayoutPanel1.Controls.Add(audioQualityPanel, 0, 3);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.MinimumSize = new Size(320, 0);
@@ -119,38 +119,38 @@
             tableLayoutPanel1.Size = new Size(370, 430);
             tableLayoutPanel1.TabIndex = 0;
             // 
-            // panel5
+            // outputFormatPanel
             // 
-            panel5.Controls.Add(radioButton12);
-            panel5.Controls.Add(radioButton13);
-            panel5.Controls.Add(label4);
-            panel5.Dock = DockStyle.Fill;
-            panel5.Location = new Point(3, 306);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(364, 36);
-            panel5.TabIndex = 5;
+            outputFormatPanel.Controls.Add(radioButtonMp3);
+            outputFormatPanel.Controls.Add(radioButtonMp4);
+            outputFormatPanel.Controls.Add(label4);
+            outputFormatPanel.Dock = DockStyle.Fill;
+            outputFormatPanel.Location = new Point(3, 306);
+            outputFormatPanel.Name = "outputFormatPanel";
+            outputFormatPanel.Size = new Size(364, 36);
+            outputFormatPanel.TabIndex = 5;
             // 
-            // radioButton12
+            // radioButtonMp3
             // 
-            radioButton12.AutoSize = true;
-            radioButton12.Location = new Point(214, 8);
-            radioButton12.Name = "radioButton12";
-            radioButton12.Size = new Size(49, 19);
-            radioButton12.TabIndex = 11;
-            radioButton12.Text = "mp3";
-            radioButton12.UseVisualStyleBackColor = true;
+            radioButtonMp3.AutoSize = true;
+            radioButtonMp3.Location = new Point(214, 8);
+            radioButtonMp3.Name = "radioButtonMp3";
+            radioButtonMp3.Size = new Size(49, 19);
+            radioButtonMp3.TabIndex = 11;
+            radioButtonMp3.Text = "mp3";
+            radioButtonMp3.UseVisualStyleBackColor = true;
             // 
-            // radioButton13
+            // radioButtonMp4
             // 
-            radioButton13.AutoSize = true;
-            radioButton13.Checked = true;
-            radioButton13.Location = new Point(159, 8);
-            radioButton13.Name = "radioButton13";
-            radioButton13.Size = new Size(49, 19);
-            radioButton13.TabIndex = 10;
-            radioButton13.TabStop = true;
-            radioButton13.Text = "mp4";
-            radioButton13.UseVisualStyleBackColor = true;
+            radioButtonMp4.AutoSize = true;
+            radioButtonMp4.Checked = true;
+            radioButtonMp4.Location = new Point(159, 8);
+            radioButtonMp4.Name = "radioButtonMp4";
+            radioButtonMp4.Size = new Size(49, 19);
+            radioButtonMp4.TabIndex = 10;
+            radioButtonMp4.TabStop = true;
+            radioButtonMp4.Text = "mp4";
+            radioButtonMp4.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -216,35 +216,35 @@
             selectedFolderTextBox.Size = new Size(321, 23);
             selectedFolderTextBox.TabIndex = 2;
             // 
-            // panel3
+            // videoQualityPanel
             // 
-            panel3.Controls.Add(radioButton9);
-            panel3.Controls.Add(label2);
-            panel3.Controls.Add(radioButton8);
-            panel3.Controls.Add(radioButton7);
-            panel3.Controls.Add(radioButton6);
-            panel3.Controls.Add(radioButton5);
-            panel3.Controls.Add(radioButton4);
-            panel3.Controls.Add(radioButton3);
-            panel3.Controls.Add(radioButton2);
-            panel3.Controls.Add(radioButton1);
-            panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(3, 175);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(364, 83);
-            panel3.TabIndex = 2;
+            videoQualityPanel.Controls.Add(radioButtonHighestAvailable);
+            videoQualityPanel.Controls.Add(label2);
+            videoQualityPanel.Controls.Add(radioButton2160p);
+            videoQualityPanel.Controls.Add(radioButton1440p);
+            videoQualityPanel.Controls.Add(radioButton1080p);
+            videoQualityPanel.Controls.Add(radioButton720p);
+            videoQualityPanel.Controls.Add(radioButton240p);
+            videoQualityPanel.Controls.Add(radioButton360p);
+            videoQualityPanel.Controls.Add(radioButton144p);
+            videoQualityPanel.Controls.Add(radioButton480p);
+            videoQualityPanel.Dock = DockStyle.Fill;
+            videoQualityPanel.Location = new Point(3, 175);
+            videoQualityPanel.Name = "videoQualityPanel";
+            videoQualityPanel.Size = new Size(364, 83);
+            videoQualityPanel.TabIndex = 2;
             // 
-            // radioButton9
+            // radioButtonHighestAvailable
             // 
-            radioButton9.AutoSize = true;
-            radioButton9.Checked = true;
-            radioButton9.Location = new Point(198, 51);
-            radioButton9.Name = "radioButton9";
-            radioButton9.Size = new Size(115, 19);
-            radioButton9.TabIndex = 9;
-            radioButton9.TabStop = true;
-            radioButton9.Text = "highest-available";
-            radioButton9.UseVisualStyleBackColor = true;
+            radioButtonHighestAvailable.AutoSize = true;
+            radioButtonHighestAvailable.Checked = true;
+            radioButtonHighestAvailable.Location = new Point(198, 51);
+            radioButtonHighestAvailable.Name = "radioButtonHighestAvailable";
+            radioButtonHighestAvailable.Size = new Size(115, 19);
+            radioButtonHighestAvailable.TabIndex = 9;
+            radioButtonHighestAvailable.TabStop = true;
+            radioButtonHighestAvailable.Text = "highest-available";
+            radioButtonHighestAvailable.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -255,85 +255,85 @@
             label2.TabIndex = 8;
             label2.Text = "Select Video Quality:";
             // 
-            // radioButton8
+            // radioButton2160p
             // 
-            radioButton8.AutoSize = true;
-            radioButton8.Location = new Point(142, 51);
-            radioButton8.Name = "radioButton8";
-            radioButton8.Size = new Size(56, 19);
-            radioButton8.TabIndex = 7;
-            radioButton8.Text = "2160p";
-            radioButton8.UseVisualStyleBackColor = true;
+            radioButton2160p.AutoSize = true;
+            radioButton2160p.Location = new Point(142, 51);
+            radioButton2160p.Name = "radioButton2160p";
+            radioButton2160p.Size = new Size(56, 19);
+            radioButton2160p.TabIndex = 7;
+            radioButton2160p.Text = "2160p";
+            radioButton2160p.UseVisualStyleBackColor = true;
             // 
-            // radioButton7
+            // radioButton1440p
             // 
-            radioButton7.AutoSize = true;
-            radioButton7.Location = new Point(86, 51);
-            radioButton7.Name = "radioButton7";
-            radioButton7.Size = new Size(56, 19);
-            radioButton7.TabIndex = 6;
-            radioButton7.Text = "1440p";
-            radioButton7.UseVisualStyleBackColor = true;
+            radioButton1440p.AutoSize = true;
+            radioButton1440p.Location = new Point(86, 51);
+            radioButton1440p.Name = "radioButton1440p";
+            radioButton1440p.Size = new Size(56, 19);
+            radioButton1440p.TabIndex = 6;
+            radioButton1440p.Text = "1440p";
+            radioButton1440p.UseVisualStyleBackColor = true;
             // 
-            // radioButton6
+            // radioButton1080p
             // 
-            radioButton6.AutoSize = true;
-            radioButton6.Location = new Point(30, 51);
-            radioButton6.Name = "radioButton6";
-            radioButton6.Size = new Size(56, 19);
-            radioButton6.TabIndex = 5;
-            radioButton6.Text = "1080p";
-            radioButton6.UseVisualStyleBackColor = true;
+            radioButton1080p.AutoSize = true;
+            radioButton1080p.Location = new Point(30, 51);
+            radioButton1080p.Name = "radioButton1080p";
+            radioButton1080p.Size = new Size(56, 19);
+            radioButton1080p.TabIndex = 5;
+            radioButton1080p.Text = "1080p";
+            radioButton1080p.UseVisualStyleBackColor = true;
             // 
-            // radioButton5
+            // radioButton720p
             // 
-            radioButton5.AutoSize = true;
-            radioButton5.Location = new Point(254, 26);
-            radioButton5.Name = "radioButton5";
-            radioButton5.Size = new Size(50, 19);
-            radioButton5.TabIndex = 4;
-            radioButton5.Text = "720p";
-            radioButton5.UseVisualStyleBackColor = true;
+            radioButton720p.AutoSize = true;
+            radioButton720p.Location = new Point(254, 26);
+            radioButton720p.Name = "radioButton720p";
+            radioButton720p.Size = new Size(50, 19);
+            radioButton720p.TabIndex = 4;
+            radioButton720p.Text = "720p";
+            radioButton720p.UseVisualStyleBackColor = true;
             // 
-            // radioButton4
+            // radioButton240p
             // 
-            radioButton4.AutoSize = true;
-            radioButton4.Location = new Point(86, 26);
-            radioButton4.Name = "radioButton4";
-            radioButton4.Size = new Size(50, 19);
-            radioButton4.TabIndex = 3;
-            radioButton4.Text = "240p";
-            radioButton4.UseVisualStyleBackColor = true;
+            radioButton240p.AutoSize = true;
+            radioButton240p.Location = new Point(86, 26);
+            radioButton240p.Name = "radioButton240p";
+            radioButton240p.Size = new Size(50, 19);
+            radioButton240p.TabIndex = 3;
+            radioButton240p.Text = "240p";
+            radioButton240p.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // radioButton360p
             // 
-            radioButton3.AutoSize = true;
-            radioButton3.Location = new Point(142, 26);
-            radioButton3.Name = "radioButton3";
-            radioButton3.Size = new Size(50, 19);
-            radioButton3.TabIndex = 2;
-            radioButton3.Text = "360p";
-            radioButton3.UseVisualStyleBackColor = true;
+            radioButton360p.AutoSize = true;
+            radioButton360p.Location = new Point(142, 26);
+            radioButton360p.Name = "radioButton360p";
+            radioButton360p.Size = new Size(50, 19);
+            radioButton360p.TabIndex = 2;
+            radioButton360p.Text = "360p";
+            radioButton360p.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // radioButton144p
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(30, 26);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(50, 19);
-            radioButton2.TabIndex = 1;
-            radioButton2.Text = "144p";
-            radioButton2.UseVisualStyleBackColor = true;
+            radioButton144p.AutoSize = true;
+            radioButton144p.Location = new Point(30, 26);
+            radioButton144p.Name = "radioButton144p";
+            radioButton144p.Size = new Size(50, 19);
+            radioButton144p.TabIndex = 1;
+            radioButton144p.Text = "144p";
+            radioButton144p.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // radioButton480p
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(198, 26);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(50, 19);
-            radioButton1.TabIndex = 0;
-            radioButton1.Text = "480p";
-            radioButton1.UseVisualStyleBackColor = true;
+            radioButton480p.AutoSize = true;
+            radioButton480p.Location = new Point(198, 26);
+            radioButton480p.Name = "radioButton480p";
+            radioButton480p.Size = new Size(50, 19);
+            radioButton480p.TabIndex = 0;
+            radioButton480p.Text = "480p";
+            radioButton480p.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -346,38 +346,38 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += Button1_Click;
             // 
-            // panel4
+            // audioQualityPanel
             // 
-            panel4.Controls.Add(radioButton11);
-            panel4.Controls.Add(radioButton10);
-            panel4.Controls.Add(label3);
-            panel4.Dock = DockStyle.Fill;
-            panel4.Location = new Point(3, 264);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(364, 36);
-            panel4.TabIndex = 4;
+            audioQualityPanel.Controls.Add(radioButtonHighest);
+            audioQualityPanel.Controls.Add(radioButtonLowest);
+            audioQualityPanel.Controls.Add(label3);
+            audioQualityPanel.Dock = DockStyle.Fill;
+            audioQualityPanel.Location = new Point(3, 264);
+            audioQualityPanel.Name = "audioQualityPanel";
+            audioQualityPanel.Size = new Size(364, 36);
+            audioQualityPanel.TabIndex = 4;
             // 
-            // radioButton11
+            // radioButtonHighest
             // 
-            radioButton11.AutoSize = true;
-            radioButton11.Checked = true;
-            radioButton11.Location = new Point(215, 8);
-            radioButton11.Name = "radioButton11";
-            radioButton11.Size = new Size(64, 19);
-            radioButton11.TabIndex = 11;
-            radioButton11.TabStop = true;
-            radioButton11.Text = "highest";
-            radioButton11.UseVisualStyleBackColor = true;
+            radioButtonHighest.AutoSize = true;
+            radioButtonHighest.Checked = true;
+            radioButtonHighest.Location = new Point(215, 8);
+            radioButtonHighest.Name = "radioButtonHighest";
+            radioButtonHighest.Size = new Size(64, 19);
+            radioButtonHighest.TabIndex = 11;
+            radioButtonHighest.TabStop = true;
+            radioButtonHighest.Text = "highest";
+            radioButtonHighest.UseVisualStyleBackColor = true;
             // 
-            // radioButton10
+            // radioButtonLowest
             // 
-            radioButton10.AutoSize = true;
-            radioButton10.Location = new Point(148, 8);
-            radioButton10.Name = "radioButton10";
-            radioButton10.Size = new Size(59, 19);
-            radioButton10.TabIndex = 10;
-            radioButton10.Text = "lowest";
-            radioButton10.UseVisualStyleBackColor = true;
+            radioButtonLowest.AutoSize = true;
+            radioButtonLowest.Location = new Point(148, 8);
+            radioButtonLowest.Name = "radioButtonLowest";
+            radioButtonLowest.Size = new Size(59, 19);
+            radioButtonLowest.TabIndex = 10;
+            radioButtonLowest.Text = "lowest";
+            radioButtonLowest.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -429,16 +429,16 @@
             ((System.ComponentModel.ISupportInitialize)MainSplitContainer).EndInit();
             MainSplitContainer.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
+            outputFormatPanel.ResumeLayout(false);
+            outputFormatPanel.PerformLayout();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
+            videoQualityPanel.ResumeLayout(false);
+            videoQualityPanel.PerformLayout();
+            audioQualityPanel.ResumeLayout(false);
+            audioQualityPanel.PerformLayout();
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel2.PerformLayout();
             ResumeLayout(false);
@@ -455,25 +455,25 @@
         private TextBox selectedFolderTextBox;
         private FolderBrowserDialog folderBrowserDialog1;
         private Button selectFolderButton;
-        private Panel panel3;
-        private RadioButton radioButton5;
-        private RadioButton radioButton4;
-        private RadioButton radioButton3;
-        private RadioButton radioButton2;
-        private RadioButton radioButton1;
-        private RadioButton radioButton8;
-        private RadioButton radioButton7;
-        private RadioButton radioButton6;
+        private Panel videoQualityPanel;
+        private RadioButton radioButton720p;
+        private RadioButton radioButton240p;
+        private RadioButton radioButton360p;
+        private RadioButton radioButton144p;
+        private RadioButton radioButton480p;
+        private RadioButton radioButton2160p;
+        private RadioButton radioButton1440p;
+        private RadioButton radioButton1080p;
         private Label label2;
-        private RadioButton radioButton9;
+        private RadioButton radioButtonHighestAvailable;
         private Button button1;
-        private Panel panel4;
-        private RadioButton radioButton11;
-        private RadioButton radioButton10;
+        private Panel audioQualityPanel;
+        private RadioButton radioButtonHighest;
+        private RadioButton radioButtonLowest;
         private Label label3;
-        private Panel panel5;
-        private RadioButton radioButton12;
-        private RadioButton radioButton13;
+        private Panel outputFormatPanel;
+        private RadioButton radioButtonMp3;
+        private RadioButton radioButtonMp4;
         private Label label4;
         private TableLayoutPanel tableLayoutPanel2;
         private Label mainTitleLabel;
