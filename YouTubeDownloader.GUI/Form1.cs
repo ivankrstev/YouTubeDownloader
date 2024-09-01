@@ -22,8 +22,6 @@ namespace YouTubeDownloader.GUI
 
         private async void Button1_Click(object sender, EventArgs e)
         {
-            beginDownloadButton.Enabled = false;
-            beginDownloadButton.Text = "Downloading...";
             string videoUrl = urlTextBox.Text;
             if (string.IsNullOrEmpty(videoUrl))
             {
@@ -35,6 +33,8 @@ namespace YouTubeDownloader.GUI
                 MessageBox.Show("Please select a folder to save the videos.");
                 return;
             }
+            beginDownloadButton.Enabled = false;
+            beginDownloadButton.Text = "Downloading...";
             var (isPlaylist, normalizedUrl) = ProcessYouTubeInput(videoUrl);
 
             if (!isPlaylist)
