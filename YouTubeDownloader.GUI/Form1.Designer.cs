@@ -62,6 +62,15 @@
             videoSizeLabel = new Label();
             videoLengthLabel = new Label();
             downloadedQualityLabel = new Label();
+            playlistInfoPanel = new Panel();
+            listView1 = new ListView();
+            Title = new ColumnHeader();
+            Duration = new ColumnHeader();
+            Size = new ColumnHeader();
+            VideoQuality = new ColumnHeader();
+            AudioQuality = new ColumnHeader();
+            videosCountLabel = new Label();
+            QualityBitrate = new ColumnHeader();
             folderBrowserDialog1 = new FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)MainSplitContainer).BeginInit();
             MainSplitContainer.Panel1.SuspendLayout();
@@ -75,6 +84,7 @@
             audioQualityPanel.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             videoInfoPanel.SuspendLayout();
+            playlistInfoPanel.SuspendLayout();
             SuspendLayout();
             // 
             // MainSplitContainer
@@ -399,12 +409,14 @@
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel2.Controls.Add(mainTitleLabel, 0, 0);
             tableLayoutPanel2.Controls.Add(videoInfoPanel, 0, 1);
+            tableLayoutPanel2.Controls.Add(playlistInfoPanel, 0, 1);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(0, 0);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 2;
             tableLayoutPanel2.RowStyles.Add(new RowStyle());
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel2.Size = new Size(409, 430);
             tableLayoutPanel2.TabIndex = 0;
             // 
@@ -427,17 +439,17 @@
             videoInfoPanel.Controls.Add(videoLengthLabel);
             videoInfoPanel.Controls.Add(downloadedQualityLabel);
             videoInfoPanel.Dock = DockStyle.Fill;
-            videoInfoPanel.Location = new Point(3, 73);
+            videoInfoPanel.Location = new Point(3, 413);
             videoInfoPanel.Name = "videoInfoPanel";
-            videoInfoPanel.Padding = new Padding(15);
-            videoInfoPanel.Size = new Size(403, 354);
+            videoInfoPanel.Size = new Size(403, 14);
             videoInfoPanel.TabIndex = 2;
+            videoInfoPanel.Visible = false;
             // 
             // videoSizeLabel
             // 
             videoSizeLabel.AutoSize = true;
             videoSizeLabel.Font = new Font("Segoe UI", 10F);
-            videoSizeLabel.Location = new Point(18, 46);
+            videoSizeLabel.Location = new Point(3, 31);
             videoSizeLabel.Name = "videoSizeLabel";
             videoSizeLabel.Size = new Size(0, 19);
             videoSizeLabel.TabIndex = 2;
@@ -446,7 +458,7 @@
             // 
             videoLengthLabel.AutoSize = true;
             videoLengthLabel.Font = new Font("Segoe UI", 10F);
-            videoLengthLabel.Location = new Point(18, 15);
+            videoLengthLabel.Location = new Point(3, 0);
             videoLengthLabel.Name = "videoLengthLabel";
             videoLengthLabel.Size = new Size(0, 19);
             videoLengthLabel.TabIndex = 1;
@@ -455,10 +467,72 @@
             // 
             downloadedQualityLabel.AutoSize = true;
             downloadedQualityLabel.Font = new Font("Segoe UI", 10F);
-            downloadedQualityLabel.Location = new Point(18, 77);
+            downloadedQualityLabel.Location = new Point(3, 62);
             downloadedQualityLabel.Name = "downloadedQualityLabel";
             downloadedQualityLabel.Size = new Size(0, 19);
             downloadedQualityLabel.TabIndex = 0;
+            // 
+            // playlistInfoPanel
+            // 
+            playlistInfoPanel.AutoSize = true;
+            playlistInfoPanel.Controls.Add(listView1);
+            playlistInfoPanel.Controls.Add(videosCountLabel);
+            playlistInfoPanel.Dock = DockStyle.Fill;
+            playlistInfoPanel.Location = new Point(3, 73);
+            playlistInfoPanel.Name = "playlistInfoPanel";
+            playlistInfoPanel.Padding = new Padding(15, 0, 15, 15);
+            playlistInfoPanel.Size = new Size(403, 334);
+            playlistInfoPanel.TabIndex = 3;
+            playlistInfoPanel.Visible = false;
+            // 
+            // listView1
+            // 
+            listView1.Columns.AddRange(new ColumnHeader[] { Title, Duration, Size, VideoQuality, AudioQuality });
+            listView1.Dock = DockStyle.Fill;
+            listView1.Location = new Point(15, 24);
+            listView1.Name = "listView1";
+            listView1.Size = new Size(373, 295);
+            listView1.TabIndex = 1;
+            listView1.UseCompatibleStateImageBehavior = false;
+            listView1.View = View.Details;
+            // 
+            // Title
+            // 
+            Title.Text = "Title";
+            Title.Width = 150;
+            // 
+            // Duration
+            // 
+            Duration.Text = "Duration";
+            // 
+            // Size
+            // 
+            Size.Text = "Size";
+            // 
+            // VideoQuality
+            // 
+            VideoQuality.Text = "Video Quality";
+            // 
+            // AudioQuality
+            // 
+            AudioQuality.Text = "Audio Quality";
+            // 
+            // videosCountLabel
+            // 
+            videosCountLabel.AutoSize = true;
+            videosCountLabel.Dock = DockStyle.Top;
+            videosCountLabel.Font = new Font("Segoe UI", 10F);
+            videosCountLabel.Location = new Point(15, 0);
+            videosCountLabel.Margin = new Padding(3, 0, 3, 10);
+            videosCountLabel.Name = "videosCountLabel";
+            videosCountLabel.Padding = new Padding(0, 0, 0, 5);
+            videosCountLabel.Size = new Size(0, 24);
+            videosCountLabel.TabIndex = 0;
+            // 
+            // QualityBitrate
+            // 
+            QualityBitrate.Text = "Quality | Bitrate";
+            QualityBitrate.Width = 100;
             // 
             // Form1
             // 
@@ -489,6 +563,8 @@
             tableLayoutPanel2.PerformLayout();
             videoInfoPanel.ResumeLayout(false);
             videoInfoPanel.PerformLayout();
+            playlistInfoPanel.ResumeLayout(false);
+            playlistInfoPanel.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -529,5 +605,14 @@
         private Label downloadedQualityLabel;
         private Label videoLengthLabel;
         private Label videoSizeLabel;
+        private Panel playlistInfoPanel;
+        private Label videosCountLabel;
+        private ListView listView1;
+        private ColumnHeader Title;
+        private ColumnHeader Duration;
+        private ColumnHeader Size;
+        private ColumnHeader QualityBitrate;
+        private ColumnHeader VideoQuality;
+        private ColumnHeader AudioQuality;
     }
 }
