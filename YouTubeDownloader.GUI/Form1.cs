@@ -96,5 +96,18 @@ namespace YouTubeDownloader.GUI
                 }
             }
         }
+
+        private void CleanUpPlaylistInfoLabels()
+        {
+            foreach (var control in playlistInfoPanel.Controls)
+            {
+                if (control is Label label)
+                {
+                    label.Text = "";
+                }
+            }
+            // also clear the data grid view
+            listView1.Items.Clear();
+        }
     }
 }
