@@ -1,3 +1,5 @@
+using System.Diagnostics;
+using System.Drawing;
 using YouTubeDownloader.Core;
 using static YouTubeDownloader.Core.DownloadOptions;
 
@@ -37,6 +39,8 @@ namespace YouTubeDownloader.GUI
 
             if (!isPlaylist)
             {
+                videoInfoPanel.Visible = true;
+                playlistInfoPanel.Visible = false;
                 CleanUpInfoLabels();
                 DownloadOptions downloadOptions = new()
                 {
@@ -67,6 +71,60 @@ namespace YouTubeDownloader.GUI
                 else
                 {
                     MessageBox.Show(videoDownloadResponse.Message);
+                }
+            }
+            else
+            {
+                CleanUpPlaylistInfoLabels();
+                videoInfoPanel.Visible = false;
+                playlistInfoPanel.Visible = true;
+                DownloadOptions downloadOptions = new()
+                {
+                    Url = normalizedUrl,
+                    VideoQuality = GetSelectedRadioButton(videoQualityPanel),
+                    AudioQuality = GetSelectedRadioButton(audioQualityPanel),
+                    Format = GetSelectedRadioButton(outputFormatPanel),
+                    OutputDirectory = selectedFolderTextBox.Text,
+                    IsPlaylist = true
+                };
+                PlaylistDownloader playlistDownloader = new(downloadOptions);
+                var (playlistMetadata, videosMetadata) = await playlistDownloader.GetPlaylistMetadataAndVideos(normalizedUrl);
+                mainTitleLabel.Text = $"Selected playlist: {playlistMetadata.Title}";
+                videosCountLabel.Text = $"{videosMetadata.Count} videos found.";
+                // Add the videos to the list view
+                foreach (var video in videosMetadata)
+                {
+                    ListViewItem item = new(video.Title); // Create a new item with the video title
+                    item.SubItems.Add(video.Duration.ToString()); // Add the video duration to the item
+                    item.SubItems.Add(""); // Empty for now, will update after download
+                    item.SubItems.Add(""); // Empty for now, will update after download
+                    item.SubItems.Add(""); // Empty for now, will update after download
+                    listView1.Items.Add(item); // Add the item to the list view
+                }
+                // Start downloading the videos
+                foreach (var video in videosMetadata)
+                {
+                    downloadOptions.Url = video.Url;
+                    VideoDownloader videoDownloader = new();
+                    var videoDownloadResponse = await videoDownloader.DownloadVideoAsync(downloadOptions);
+                    if (videoDownloadResponse.Size != null && videoDownloadResponse.VideoAudioQuality != null)
+                    {
+                        foreach (ListViewItem item in listView1.Items)
+                        {
+                            if (item.Text == video.Title)
+                            {
+                                item.SubItems[2].Text = videoDownloadResponse.Size; // Update the video size
+                                string[] splittedQualities = videoDownloadResponse.VideoAudioQuality.Split("|");
+                                item.SubItems[3].Text = splittedQualities[0].Replace("Quality(video):", ""); // Update the video quality
+                                item.SubItems[4].Text = splittedQualities[1].Replace("Bitrate(audio):", ""); // Update the audio quality
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(videoDownloadResponse.Message);
+                    }
                 }
             }
             beginDownloadButton.Enabled = true;
