@@ -22,13 +22,13 @@ jobs:
       run: dotnet restore
 
     - name: Build
-      run: dotnet publish YouTubeDownloader.GUI/YouTubeDownloader.GUI.csproj -c Release -r win-x64 --self-contained -p:PublishSingleFile=true
+      run: dotnet publish YouTubeDownloader.GUI/YouTubeDownloader.GUI.csproj -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -o ./publish
 
     - name: Archive build output
       uses: actions/upload-artifact@v2
       with:
         name: build-output
-        path: .\bin\Release\net8.0-windows\win-x64\publish
+        path: ./publish
 
   release:
     needs: build
@@ -39,7 +39,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: build-output
-        path: .\bin\Release\net8.0-windows\win-x64\publish
+        path: ./publish
 
     - name: Create Release
       id: create_release
