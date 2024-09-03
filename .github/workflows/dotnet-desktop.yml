@@ -28,7 +28,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: build-output
-        path: ./publish
+        path: .\bin\Release\net8.0-windows\win-x64\publish
 
   release:
     needs: build
@@ -39,7 +39,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: build-output
-        path: ./publish
+        path: .\bin\Release\net8.0-windows\win-x64\publish
 
     - name: Create Release
       id: create_release
