@@ -1,0 +1,63 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Install dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet publish YouTubeDownloader.GUI/YouTubeDownloader.GUI.csproj -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -o ./publish
+
+    - name: Archive build output
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-output
+        path: ./publish
+
+  release:
+    needs: build
+    runs-on: windows-latest
+
+    steps:
+    - name: Download build output
+      uses: actions/download-artifact@v2
+      with:
+        name: build-output
+        path: ./publish
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./publish/YoutubeDownloader.GUI.exe # Replace with your actual executable name
+        asset_name: YoutubeDownloader.GUI.exe # Replace with your actual executable name
+        asset_content_type: application/octet-stream
