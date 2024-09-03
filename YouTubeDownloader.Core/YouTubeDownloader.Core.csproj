@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="ffmpeg.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="YoutubeExplode" Version="6.4.0" />
     <PackageReference Include="YoutubeExplode.Converter" Version="6.4.0" />
   </ItemGroup>
