@@ -19,7 +19,7 @@ namespace YouTubeDownloader.Core
             foreach (var video in videosMetadata)
             {
                 _downloadOptions.Url = video.Url;
-                await _videoDownloader.DownloadVideoAsync(_downloadOptions);
+                await _videoDownloader.DownloadVideoAsync(_downloadOptions, Console.WriteLine);
             }
             Console.WriteLine("Playlist download complete.");
         }
