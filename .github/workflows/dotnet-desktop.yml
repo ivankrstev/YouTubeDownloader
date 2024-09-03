@@ -2,8 +2,8 @@ name: Build and Release
 
 on:
   push:
-    branches:
-      - master
+    tags:
+      - 'v*'  # Trigger the workflow only on tag pushes
 
 jobs:
   build:
